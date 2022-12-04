@@ -1,7 +1,7 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 
-const generateHTML = ({ name, description1, description2, description3, installation, usage, contributions, contributions2, tests, license }) =>
+const generateHTML = ({ name, description1, description2, description3, installation, usage, contributions, contributions2, tests, license, questions, questions2, questions3 }) =>
     `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,13 +22,18 @@ const generateHTML = ({ name, description1, description2, description3, installa
         <li class="list-group-item">You can access this application at the following link: ${installation}</li>
     <h2 class="list-group-item">Usage:</h2>
         <li class="list-group-item">${usage}</li>
-    <h2 class="list-group-item">Contributors:</h2>
+    <h2 class="list-group-item">Contributing:</h2>
         <li class="list-group-item">The technologies used during development are: ${contributions}</li>
         <li class="list-group-item">The following individuals contributed to application development: ${contributions2}</li>
     <h2 class="list-group-item">Tests:</h2>
         <li class="list-group-item">${tests}</li>
     <h2 class="list-group-item">License:</h2>
         <li class="list-group-item">${license}</li>
+    <h2 class="list-group-item">Questions?</h2>
+    <li class="list-group-item">Feel free tontact me directly with any additional questions.</li>
+    <li class="list-group-item">${questions}</li>
+    <li class="list-group-item">Github Username: ${questions2}</li>
+    <li class="list-group-item">Email: ${questions3}</li>
     </ul>
   </div>
 </div>
@@ -65,7 +70,7 @@ inquirer
         {
             type: 'input',
             name: 'usage',
-            message: 'Describe how to use the application.',
+            message: 'Describe how to use the application functions.',
         },
         {
             type: 'input',
@@ -80,12 +85,28 @@ inquirer
         {
             type: 'input',
             name: 'tests',
-            message: 'What goes here?',
+            message: 'Describe your applications test insructions:',
+        },
+        {
+            type: 'list',
+            name: 'license',
+            message: 'What license did you use for this application?',
+            choices: ["NA - no license", "Academic Free License v3.0", "Apache license 2.0", "Artistic license 2.0", "Boost Software License 1.0", "BSD 2-clause Simplified license", "BSD 3-clause New or Revised license", "BSD 3-clause Clear license", "Eclipse Public License 1.0", "Eclipse Public License 2.0", "Microsoft Public License", "MIT", "Mozilla Public License 2.0", "Open Software License 3.0"]
         },
         {
             type: 'input',
-            name: 'license',
-            message: 'What license did you use for this application?',
+            name: 'questions',
+            message: 'What is your name?',
+        },
+        {
+            type: 'input',
+            name: 'questions2',
+            message: 'What is your Github username?',
+        },
+        {
+            type: 'input',
+            name: 'questions3',
+            message: 'What is your email?',
         },
     ])
     .then((answers) => {
